@@ -1,18 +1,4 @@
-from enum import Enum
-
-
-
-
-
-whatDay(1)
-
-def getStartingDay(year):
-    thisYear = 2019
-
-    thisYearDay = 1
-    factor = 365 % 7
-    skipYears = calculatingSkipYears(year, thisYear)
-    rewindYear =  ((thisYearDay - ((thisYear - year) * factor)) + skipYears) % 7
+Days = [ "Monday ", "Tuesday" ,"Wednesday","Thursday","Friday","Saturday","Sunday"]
 
 def whatDay(userMode):
 
@@ -21,21 +7,33 @@ def whatDay(userMode):
     else:
         strStart = "Wazzup bruh!"
 
+    strDate = input(strStart + "\nenter your date in the following format: YYYY \n")
+    intYear = int(strDate[0:5])
+    finalDay = Days[getStartingDay(intYear)]
+    print(finalDay)
 
-    strDate = input("enter your date in the following format: DD/MM/YYYY \n")
-    intDay = int(strDate[0:2])
-    intMonth = int(strDate[3:5])
-    intYear = int(strDate[6:10])
+def getStartingDay(year):
+    thisYear = 2019
 
+    thisYearDay = 1
+    factor = 365 % 7
+    skipYears = calculatingSkipYears(year, thisYear)
 
-    print(strStart + strFinal)
+    difYears = thisYear - year
+    finalRewind = (thisYearDay - (difYears*factor) - skipYears) % 7
+
+    return finalRewind
 
 def calculatingSkipYears(year, yearNow):
-    if (yearNow-year) < 4 and year > yearNow:
+    if year > yearNow:
         return 0
+    elif year % 4 == 0:
+        return 1
     else:
         while not(yearNow % 4 != 0):
             yearNow = yearNow - 1
         difference = (yearNow - year)/4
         return int(difference)
 
+
+whatDay(1)

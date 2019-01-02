@@ -2,7 +2,8 @@ leo = {
     "hallo" : "hello",
     "was" : "what",
     "hit or miss" : "treffen oder verfehlen",
-    "whatface" : "wasgesicht"
+    "whatface" : "wasgesicht",
+    1 : "xxx"
 }
 
-print(leo["hallo"])
+print(leo.get("whatface"))
